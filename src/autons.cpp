@@ -401,7 +401,7 @@ void run_intake(int speed, double secs){
 ///
 // Red left
 ///
-void left_red() {
+void red_left() {
   // get the balls infront of the robot
   chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
   chassis.pid_wait();
