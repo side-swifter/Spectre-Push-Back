@@ -10,7 +10,7 @@ git commit -m "akshay is the goat"
 git push
 ```
 
-## Also need ts cuz I forget how to replace the my code with the latest github pull for whenever I mess up
+## Also need this cuz I forget how to replace the my code with the latest github pull for whenever I mess up
 ```
 git fetch origin
 git reset --hard origin/main
