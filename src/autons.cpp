@@ -1,4 +1,5 @@
 #include "main.h"
+#include "subsystems.hpp"
 
 /////
 // For installation, upgrading, documentations, and tutorials, check out our website!
@@ -6,7 +7,7 @@
 /////
 
 // These are out of 127
-const int DRIVE_SPEED = 110;  // 110 is 80 percent, 
+const int DRIVE_SPEED = 110;  // 110 is 80 percent, 127 is max speed
 const int TURN_SPEED = 90;
 const int SWING_SPEED = 110;
 
@@ -47,21 +48,6 @@ void default_constants() {
 
   chassis.pid_angle_behavior_set(ez::shortest);  // Changes the default behavior for turning, this defaults it to the shortest path there
 }
-
-
-///
-// Red atuon
-///
-
-
-///
-// Red left
-///
-void left_red() {
-  chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-}
-
 
 
 ///
@@ -389,6 +375,60 @@ void measure_offsets() {
   if (chassis.odom_tracker_front != nullptr) chassis.odom_tracker_front->distance_to_center_set(f_offset);
 }
 
-// . . .
-// Make your own autonomous functions here!
-// . . .
+///
+// Things I want to have in my code
+///
+
+void run_intake(int speed, double secs){
+  // Run the intake for a certain number of seconds
+  intake_S1.move_velocity(speed);
+  intake_S2.move_velocity(speed);
+  pros::delay(secs * 1000);  // Convert seconds to milliseconds
+  intake_S1.move_velocity(0);
+  intake_S2.move_velocity(0);
+}
+
+
+
+
+
+
+///
+// Red atuon
+///
+
+
+///
+// Red left
+///
+void left_red() {
+  // get the balls infront of the robot
+  chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  chassis.pid_swing_set(ez::LEFT_SWING, 45_deg, SWING_SPEED, 45);
+  chassis.pid_wait();
+  chassis.pid_drive_set(6_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  // go to the goal
+  chassis.pid_swing_set(ez::LEFT_SWING, 45_deg, SWING_SPEED, 45);
+  chassis.pid_wait();
+  chassis.pid_drive_set(18_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  extender.set(true);  // Activate the extender to score the match loads
+  chassis.pid_drive_set(-17_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  run_intake(127,2.5);
+  // get the match loads
+  scraper.set(true);  // Activate the scraper to get the match loads
+  chassis.pid_drive_set(19_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  run_intake(127,2.5);
+  chassis.pid_drive_set(-19_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  run_intake(127,2.5);
+
+  
+
+  
+
+}
