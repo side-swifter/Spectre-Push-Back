@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EZ-Template/api.hpp"
+#include "EZ-Template/piston.hpp"
 #include "api.h"
 
 extern Drive chassis;
@@ -9,3 +10,7 @@ extern Drive chassis;
 
 // inline pros::Motor intake(1);
 // inline pros::adi::DigitalIn limit_switch('A');
+
+
+// Pneumatics
+inline ez::Piston extender('A');
