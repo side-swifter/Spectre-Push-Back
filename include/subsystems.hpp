@@ -14,3 +14,4 @@ extern Drive chassis;
 
 // Pneumatics
 inline ez::Piston extender('A');
+inline ez::Piston scraper('B');
