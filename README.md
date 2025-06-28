@@ -83,12 +83,16 @@ Adjust speed and direction for each movement.
 If you want to end at a specific angle, include the angle in the target point.
 
 Summary Table
-Action	Example Code
-Move to point	chassis.pid_odom_set({{X, Y}, fwd, speed});
-Move to point, face angle	chassis.pid_odom_set({{X, Y, angle}, fwd, speed});
-Multiple points	chassis.pid_odom_set({{...}, {...}, {...}}, true);
-Turn to face point	chassis.pid_turn_set({X, Y}, fwd, speed);
-Wait for finish	chassis.pid_wait();
+| Action                    | Example Code                                               |
+|---------------------------|-----------------------------------------------------------|
+| Move to point             | `chassis.pid_odom_set({{X, Y}, fwd, speed});`             |
+| Move to point, face angle | `chassis.pid_odom_set({{X, Y, angle}, fwd, speed});`      |
+| Multiple points           | `chassis.pid_odom_set({{...}, {...}, {...}}, true);`      |
+| Turn to face point        | `chassis.pid_turn_set({X, Y}, fwd, speed);`               |
+| Wait for finish           | `chassis.pid_wait();`                                     |
+
+
+
 In summary:
 
 Use chassis.pid_odom_set to move to any point (and face an angle if you want).
